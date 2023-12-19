@@ -1,4 +1,4 @@
-#
+# TO RUN
 
 bundle exec middleman server
 
