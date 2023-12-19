@@ -13,12 +13,44 @@
     @extend %product;
   }
 
+  .search-and-filter {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px; // Space between the filter and product list
+
+    #searchInput, #priceFilter {
+      flex-grow: 1;
+      padding: 10px 15px;
+      border: 1px solid grey;
+      border-radius: 4px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+      &:focus {
+        outline: none;
+        border-color: grey;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      }
+    }
+
+    #priceFilter {
+      cursor: pointer; // Changes the cursor to indicate it's clickable
+      background-color: white; // Customizable
+      color: black; // Customizable
+    }
+  }
+
   @media screen and (max-width: $screen-xs-max) {
     padding-top: 15px;
     padding-bottom: 15px;
 
     h2 {
       margin: 0 0 15px;
+    }
+
+    .search-and-filter {
+      flex-direction: column; // Stack the inputs on smaller screens
+      gap: 5px;
+      margin-bottom: 15px;
     }
   }
 }

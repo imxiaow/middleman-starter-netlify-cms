@@ -2,11 +2,17 @@ section.products
   .container
     h2
       | Products
+    
+    .search-and-filter
+      input#searchInput type="text" placeholder="Search products..."
+      select#priceFilter
+        option value=""  All Prices
+        option value="0-50"  €0 - €50
+        option value="51-100"  €51 - €100
+        option value="101-500"  €101 - €500
+        option value="501-1000"  €501 - €1000
+        option value="1001-"  €1001+
     .row
-      //product is structured: ['filename', 'data']
-      //sort by newest product
-      - data.products.sort {|(_filename_a, a),(_filename_b, b)| b.date <=> a.date}.each do | (_filename, product) |
-
-        //to get the actual data:
-        = partial 'partials/products/product', locals: {product: product}
-
+      - data.products.sort_by { |(_filename, product)| -product.date.to_time.to_i }.each do |(_filename, product)|
+        .product-row data-price=product.price
+          = partial 'partials/products/product', locals: {product: product}
